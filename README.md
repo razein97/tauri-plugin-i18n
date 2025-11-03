@@ -25,7 +25,7 @@ Install the Core plugin by adding the following to your `Cargo.toml` file:
 ```toml
 # Point this to your fork's repository and branch/tag/rev
 # Example using a GitHub repo:
-[dependencies.tauri-plugin-rusqlite2]
+[dependencies.tauri-plugin-i18n]
 git = "https://github.com/razein97/tauri-plugin-i18n"
 
 # Or use a local path if developing locally:
