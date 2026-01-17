@@ -1,6 +1,6 @@
 {
   "name": "@razein97/tauri-plugin-i18n",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "description": "A wrapper around rust_i18n",
   "main": "./dist-js/index.cjs",
