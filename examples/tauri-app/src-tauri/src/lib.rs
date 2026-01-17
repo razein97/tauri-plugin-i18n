@@ -7,7 +7,7 @@ mod custom_menu;
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
-        .plugin(tauri_plugin_i18n::init("./locales", None))
+        .plugin(tauri_plugin_i18n::init(None))
         .invoke_handler(tauri::generate_handler![open_custom_menu])
         .setup(move |app| {
             app.on_menu_event(|app_handle: &tauri::AppHandle, event| {

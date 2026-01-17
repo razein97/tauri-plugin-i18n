@@ -4,9 +4,6 @@ use tauri::{command, AppHandle, Emitter, Runtime, State};
 
 use crate::PluginI18n;
 
-// use crate::models::*;
-// use crate::I18nExt;
-
 ///
 /// Load translations
 ///

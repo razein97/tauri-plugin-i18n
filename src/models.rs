@@ -1,7 +1,8 @@
-use rust_i18n_support::load_locales;
 use std::{collections::BTreeMap, sync::Mutex};
 
 use tauri::{AppHandle, Emitter, Manager, Runtime};
+
+use crate::backend::load_data;
 
 #[derive(Debug)]
 pub struct PluginI18n<R: Runtime> {
@@ -12,10 +13,10 @@ pub struct PluginI18n<R: Runtime> {
 
 impl<R: Runtime> PluginI18n<R> {
     ///
-    /// Initialize the data using the locale and path provided.
+    /// Initialize the data using the locale
     ///
-    pub fn new(app: tauri::AppHandle<R>, path: String, locale: String) -> Self {
-        let data = load_locales(&path, |_| false);
+    pub fn new(app: tauri::AppHandle<R>, locale: String) -> Self {
+        let data = load_data(None);
         Self {
             app,
             data,

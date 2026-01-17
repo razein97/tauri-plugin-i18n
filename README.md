@@ -154,7 +154,7 @@ The init method takes two args:
 ```rust
 fn main() {
     tauri::Builder::default()
-        .plugin(tauri_plugin_i18n::init("./locales", None))
+        .plugin(tauri_plugin_i18n::init(None))
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -238,3 +238,47 @@ await I18n.getInstance().load();
 **Call the destroy method in javascript when done to cleanup.**
 
 > See the examples folder for a working app.
+
+## Companion package
+
+Use package [rust-i18n-autotranslate](https://crates.io/crates/rust-i18n-autotranslate) to autotranslate locales from a source locale.
+
+_Use `.taurignore` to prevent looping while running build._
+
+_This is because tauri tracks all files in the project unless explicitly ignored._
+
+**It can be used both at compile time and runtime**
+
+### Compile time
+
+```rust
+  //build.rs
+
+  use rust_i18n_autotranslate::{
+    TranslationAPI,
+    config::{Config, TranslationProvider},
+};
+
+
+  fn main() {
+
+    //run translations
+    let target_locales = [
+        "es", "zh-CN", "zh-TW", "hi", "ar", "fr", "pt-BR", "de", "ru", "ja", "ko", "it", "tr",
+        "id", "vi",
+    ];
+
+    let cfg = Config::new()
+        .locales_directory("./locales")
+        .source_lang("en")
+        .add_target_langs(target_locales.to_vec())
+        .use_cache(true)
+        .translation_provider(TranslationProvider::DEEPL)
+        .build();
+
+    TranslationAPI::translate(cfg).unwrap();
+
+    tauri_build::build();
+}
+
+```

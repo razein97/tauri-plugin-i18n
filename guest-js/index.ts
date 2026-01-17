@@ -54,6 +54,17 @@ export default class I18n {
     this.observeDOM();
   }
 
+  /**
+* **translate**
+* 
+* Gets the current translation using key
+* @returns string
+* 
+* @example
+* ```ts
+*  i18n.translate(key);
+* ```
+*/
   translate(key: string): string {
     if (!this.translations || !this.translations[this.locale]) {
       return key; // Return key as fallback
